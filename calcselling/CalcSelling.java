@@ -52,7 +52,7 @@ public class CalcSelling {
   public static void main(String[] args) {
     // アイテムマスタからHashMap
     setItemToHashMap();
-    setPriceResultToHashMap();
+    setPriceResultToMap();
     List<Entry<String, Integer>> results = sortByTotalSelling();
 
     // 結果を出力
@@ -111,7 +111,7 @@ public class CalcSelling {
     }
   }
 
-  private static void setPriceResultToHashMap() {
+  private static void setPriceResultToMap() {
     try {
       fi = new FileInputStream("./csv/selling-record.csv");
       is = new InputStreamReader(fi);
