@@ -50,9 +50,11 @@ public class CalcSelling {
   }
 
   public static void main(String[] args) {
-    // アイテムマスタからHashMap
+    // アイテムマスタからHashMapに保存
     setItemToHashMap();
+    // レコードから各曜日ごとに計算
     setPriceResultToMap();
+    // 売上高順にソート
     List<Entry<String, Integer>> results = sortByTotalSelling();
 
     // 結果を出力
@@ -60,25 +62,6 @@ public class CalcSelling {
     for(Entry<String, Integer> entry : results) {
       System.out.println(entry.getKey() + "の売上高合計は、" + String.format("%,d", entry.getValue()) + "円です。");
     }
-  }
-
-
-  private static List<Entry<String, Integer>> sortByTotalSelling() {
-    List<Entry<String, Integer>> list_entries = new ArrayList<Entry<String, Integer>>(sellingTotalList.entrySet());
-    Collections.sort(list_entries, new Comparator<Entry<String, Integer>>() {
-      //compareを使用して値を比較して降順でsort
-      public int compare(Entry<String, Integer> obj1, Entry<String, Integer> obj2)
-      {
-        return obj2.getValue().compareTo(obj1.getValue());
-      }
-    });
-    return list_entries;
-  }
-
-  private static void calcTotal(String[] data , String date) {
-    Integer selling = itemList.get(data[1]) * Integer.parseInt(data[2]);
-    Integer total = sellingTotalList.get(date) + selling;
-    sellingTotalList.put(date, total);
   }
 
   private static void setItemToHashMap() {
@@ -96,7 +79,9 @@ public class CalcSelling {
         // 先頭行は列名なのでスキップ
         if (i != 0) {
           String[] data = line.split(",");
-          itemList.put(data[0], Integer.parseInt(data[2]));
+          String ItemCode = data[0];
+          Integer price = Integer.parseInt(data[2]);
+          itemList.put(ItemCode, price);
         }
         i++;
       }
@@ -171,6 +156,26 @@ public class CalcSelling {
         e.printStackTrace();
       }
     }
+  }
+
+  private static List<Entry<String, Integer>> sortByTotalSelling() {
+    List<Entry<String, Integer>> list_entries = new ArrayList<Entry<String, Integer>>(sellingTotalList.entrySet());
+    Collections.sort(list_entries, new Comparator<Entry<String, Integer>>() {
+      //compareを使用して値を比較して降順でsort
+      public int compare(Entry<String, Integer> obj1, Entry<String, Integer> obj2)
+      {
+        return obj2.getValue().compareTo(obj1.getValue());
+      }
+    });
+    return list_entries;
+  }
+
+  private static void calcTotal(String[] data , String date) {
+    String itemCode = data[1];
+    Integer num = Integer.parseInt(data[2]);
+    Integer selling = itemList.get(itemCode) * num;
+    Integer total = sellingTotalList.get(date) + selling;
+    sellingTotalList.put(date, total);
   }
 
 }
