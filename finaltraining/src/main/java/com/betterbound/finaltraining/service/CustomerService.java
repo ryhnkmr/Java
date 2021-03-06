@@ -2,6 +2,8 @@ package com.betterbound.finaltraining.service;
 
 import java.util.List;
 
+import javax.persistence.Id;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
