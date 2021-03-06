@@ -18,7 +18,7 @@ import com.example.demo.domain.Customer;
 import com.example.demo.service.CustomerService;
 
 @RestController
-@RequestMapping("api/v1/customers")
+@RequestMapping("api/v1/customer")
 public class CustomerRestController {
     @Autowired
     CustomerService customerService;
@@ -27,9 +27,9 @@ public class CustomerRestController {
      * 顧客取得API
      * @return List<customer>
      */
-    @GetMapping
-    List<Customer> getCustomer() {
-        List<Customer> customer = customerService.findAll();
+    @GetMapping()
+    Customer getCustomer(@PathVariable String id) {
+        Customer customer = customerService.findByCusomerId(id);
         return customer;
     }
     
@@ -38,21 +38,21 @@ public class CustomerRestController {
      * @param customer
      * @return customer
      */
-    // @PostMapping
-    // @ResponseStatus(HttpStatus.CREATED)
-    // Customer postCustomer(@RequestBody Customer customer) {
-    // 	return customerService.create(customer);
-    // }
+    @PostMapping
+    @ResponseStatus(HttpStatus.CREATED)
+    Customer postCustomer(@RequestBody Customer customer) {
+    	return customerService.create(customer);
+    }
 
     /**
      * 顧客削除API
      * @param id
      */
-    // @DeleteMapping(path = "{id}")
-    // @ResponseStatus(HttpStatus.NO_CONTENT)
-    // void deleteCustomer(@PathVariable Integer id) {
-    // 	customerService.delete(id);
-    // }
+    @DeleteMapping(path = "{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    void deleteCustomer(@PathVariable String id) {
+    	customerService.delete(id);
+    }
     
     /**
      * 顧客更新API

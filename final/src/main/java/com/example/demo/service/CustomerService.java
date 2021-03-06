@@ -19,8 +19,8 @@ public class CustomerService {
 	 * 顧客一覧取得サービス
 	 * @return List<customer>
 	 */
-	public List<Customer> findAll() {
-		return customerRepository.findAll();
+	public Customer findByCusomerId(String id) {
+		return customerRepository.findByCustomerId(id);
 	}
 	
 	/**
@@ -36,8 +36,8 @@ public class CustomerService {
 	 * 顧客削除サービス
 	 * @param id
 	 */
-	public void delete(Integer id) {
-		customerRepository.deleteById(id);
+	public void delete(String id) {
+		// customerRepository.deleteById(id);
 	}
 	
 	/**

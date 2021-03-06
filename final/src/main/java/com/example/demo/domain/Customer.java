@@ -3,6 +3,7 @@ package com.example.demo.domain;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -20,8 +21,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Customer implements Serializable{
 	@Id
+  @Embedded
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String customer_id;
+	private String customerId;
 
 	@Column(nullable = false)
 	private String name;
