@@ -21,7 +21,6 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class Customer implements Serializable{
 	@Id
-  @Embedded
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private String customerId;
 

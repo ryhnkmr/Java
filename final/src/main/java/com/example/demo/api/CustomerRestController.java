@@ -18,7 +18,7 @@ import com.example.demo.domain.Customer;
 import com.example.demo.service.CustomerService;
 
 @RestController
-@RequestMapping("api/v1/customer")
+// @RequestMapping("api/v1/customer")
 public class CustomerRestController {
     @Autowired
     CustomerService customerService;
@@ -28,8 +28,9 @@ public class CustomerRestController {
      * @return List<customer>
      */
     @GetMapping()
-    Customer getCustomer(@PathVariable String id) {
-        Customer customer = customerService.findByCusomerId(id);
+    @RequestMapping("api/v1/customer/{customer_id}")
+    Customer getCustomer(@PathVariable String customer_id) {
+        Customer customer = customerService.findByCusomerId(customer_id);
         return customer;
     }
     

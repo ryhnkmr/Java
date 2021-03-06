@@ -1,1 +1,4 @@
 INSERT INTO customers(customer_id, name, tel, birthday, email, postal_code, address, purchased_times, last_purchased_at) VALUES('A0001', '山田太郎',  '090-2222-1111', '1999/2/1', 'test@test.com', '102-1111', '栃木県ほげほげ市','1', '2021/2/3');
+INSERT INTO customers(customer_id, name, tel, birthday, email, postal_code, address, purchased_times, last_purchased_at) VALUES('A0002', 'ほげ太郎',  '090-2222-1111', '1999/2/1', 'test@test.com', '102-1111', '栃木県ほげほげ市','1', '2021/2/3');
+INSERT INTO customers(customer_id, name, tel, birthday, email, postal_code, address, purchased_times, last_purchased_at) VALUES('A0003', 'ふが太郎',  '090-2222-1111', '1999/2/1', 'test@test.com', '102-1111', '栃木県ほげほげ市','1', '2021/2/3');
+INSERT INTO customers(customer_id, name, tel, birthday, email, postal_code, address, purchased_times, last_purchased_at) VALUES('A0004', 'ほげほげ太郎',  '090-2222-1111', '1999/2/1', 'test@test.com', '102-1111', '栃木県ほげほげ市','1', '2021/2/3');
