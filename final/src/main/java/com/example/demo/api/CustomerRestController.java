@@ -39,7 +39,7 @@ public class CustomerRestController {
      * @param customer
      * @return customer
      */
-    @PostMapping
+    @PostMapping("api/v1/customer")
     @ResponseStatus(HttpStatus.CREATED)
     Customer postCustomer(@RequestBody Customer customer) {
     	return customerService.create(customer);
@@ -53,6 +53,7 @@ public class CustomerRestController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteCustomer(@PathVariable String customer_id) {
     	customerService.deleteByCustomerId(customer_id);
+      
     }
     
     /**
@@ -61,7 +62,7 @@ public class CustomerRestController {
      * @param customer
      * @return customer
      */
-    @PutMapping(value = "api/v1/customer/{customer_id}", headers="Accept=application/x-www-form-urlencoded;charset=UTF-8")
+    @PutMapping(value = "api/v1/customer/{customer_id}")
     Customer putCustomer(@PathVariable String customer_id, @RequestBody Customer customer) {
     	customer.setCustomerId(customer_id);
     	return customerService.update(customer);

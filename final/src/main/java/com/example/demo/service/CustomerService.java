@@ -31,7 +31,7 @@ public class CustomerService {
 	 * @param customer
 	 * @return customer
 	 */
-	public Customer create(Map<String, String> customer) {
+	public Customer create(Customer customer) {
 		return customerRepository.save(customer);
 	}
 
