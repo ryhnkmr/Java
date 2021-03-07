@@ -1,12 +1,15 @@
 package com.example.demo.api;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.server.DelegatingServerHttpResponse;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -50,10 +53,12 @@ public class CustomerRestController {
      * @param id
      */
     @DeleteMapping("api/v1/customer/{customer_id}")
-    @ResponseStatus(HttpStatus.NO_CONTENT)
-    void deleteCustomer(@PathVariable String customer_id) {
+    @ResponseStatus()
+    Map<String, Object> deleteCustomer(@PathVariable String customer_id) {
     	customerService.deleteByCustomerId(customer_id);
-      
+      Map<String, Object> resultMap = new HashMap<>();
+      resultMap.put("message", "success");
+      return resultMap;
     }
     
     /**
