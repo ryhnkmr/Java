@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.http.HttpStatus;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,11 +28,10 @@ public class CustomerRestController {
      * 顧客取得API
      * @return List<customer>
      */
-    @GetMapping()
-    @RequestMapping("api/v1/customer/{customer_id}")
+    @GetMapping("api/v1/customer/{customer_id}")
     Customer getCustomer(@PathVariable String customer_id) {
-        Customer customer = customerService.findByCusomerId(customer_id);
-        return customer;
+      Customer customer = customerService.findByCusomerId(customer_id);
+      return customer;
     }
     
     /**
@@ -49,10 +49,10 @@ public class CustomerRestController {
      * 顧客削除API
      * @param id
      */
-    @DeleteMapping(path = "{id}")
+    @DeleteMapping("api/v1/customer/{customer_id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void deleteCustomer(@PathVariable String id) {
-    	customerService.delete(id);
+    void deleteCustomer(@PathVariable String customer_id) {
+    	customerService.deleteByCustomerId(customer_id);
     }
     
     /**
@@ -61,10 +61,9 @@ public class CustomerRestController {
      * @param customer
      * @return customer
      */
-    // @PutMapping(path = "{id}")
-    // Customer putCustomer(@PathVariable Integer id, @RequestBody Customer customer) {
-    // 	customer.setId(id);
-    // 	return customerService.update(customer);
-    // }
-
+    @PutMapping(value = "api/v1/customer/{customer_id}", headers="Accept=application/x-www-form-urlencoded;charset=UTF-8")
+    Customer putCustomer(@PathVariable String customer_id, @RequestBody Customer customer) {
+    	customer.setCustomerId(customer_id);
+    	return customerService.update(customer);
+    }
 }

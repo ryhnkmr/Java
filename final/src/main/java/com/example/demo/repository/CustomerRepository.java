@@ -6,4 +6,6 @@ import com.example.demo.domain.Customer;
 
 public interface CustomerRepository extends JpaRepository<Customer, Integer>{
   Customer findByCustomerId(String id);
+
+  void deleteByCustomerId(String id);
 }
