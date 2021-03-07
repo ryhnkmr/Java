@@ -57,8 +57,8 @@ FORMAT: 1A
         + mail: test@test.com (string, required) - email (format: email)
         + postal_code: 736-0041 (string, required) - 郵便番号 (format: string)
         + address: 広島県安芸郡海田町大正町2-7-8 (string, required) - 住所 (format: string)
-        + purchased_times: 23 (number, optional)- 購入回数 (format: number)
-        + last_purchased_at: 2020/8/8 5:02:16 (number, optional) - 最終購入日時 (format: Datetime)
+        + purchased_times: 23 (number, required)- 購入回数 (format: number)
+        + last_purchased_at: 2020/8/8 5:02:16 (number, required) - 最終購入日時 (format: Datetime)
 
 
 + Response 201 (application/json)
@@ -80,6 +80,8 @@ FORMAT: 1A
 #### 処理概要
 
 * カスタマー情報を更新する。
+* カスタマーの購入回数や最終購入日時のみ更新したい場合は、購入回数や購入日時を最新の更新したい値にしてカスタマーのすべてのカラムの情報を送信してください。
+
 
 + Parameters
     + customer_id: A0001 (string, required) - 顧客番号
